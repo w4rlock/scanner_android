@@ -1,0 +1,115 @@
+-1. al presionar Leer del menu principal, debe activar automaticamente la camara.
+?2. Luego de leer, no recupera la cantidad previa, solo lo hace (a
+veces) si apretas el + del lado de la camarita ( digo a veces porque
+en la exportacion vemos los registros grabados)
+-3. Luego de Grabar deberia activar la camara nuevamente
+-3. El campo de cantidad tiene algun probolema en la grabacion, por
+ejemplo introducir 23897 no da ningun mensaje, pero al reescanear para
+ver cuantos conto, solo muestra 0
+-4. Revisar el tema de la grabacion, Debe permitir grabar codigos que
+no estan en la tabla de articulos (no tenemos integridad referencial
+entre articulos e inventario)
+-5. El icono de advertencia solo mostrarlo cuando no existe, o bien
+cuando el producto ya ha sido escaneado previamente, ademas de agregar
+el texto "Codigo No Existente" o "Codigo Repetido" + Descripcion de
+producto.
+?6. Usa indices distintos para PLU y para cod_pkg
+-7. No permitir cantidades negativas.
+-8. La descripcion de un producto de cod-pkg, deberia indicar la
+cantidad de unidades_x_pack
+?9. La activacion de la camara demora mucho, fijate si tiene que ver
+con la creacion del objeto y si se puede reducir el tiempo.
+-10. El teclado de PLU manual deberia ser numerico por default como en cantidad.
+*11. Se generan archivos temporales que luego no se borran
+-12. Vemos que la exportacion todavia no esta compelta, pero la base
+que genera productos.db tiene un registro por cada lectura, incluso
+para items sin codigo ¿? o sea que si le damos grabar y el campo
+codigo no tiene nada, graba lo mismo.
+-13. Las conversiones si es codigo de caja, guardar PLU con cantidad x
+unidades_x_pack
+-14. Si es fraccionable guardar el PLU o PK segun sea con cantidad x
+factor_conversion
+
+Para agregar.
+-1. Necesitamos que el inventario tenga el codigo de locacion por
+defecto, digamos el Deposito,
+2. Tambien habria que agregar la fecha hora de la ultima lectura
+3. y el tipo de producto leido (unidad o paquete) (viene vacio)
+-4. en el formulario de Leer agregar el combo para seleccionar Locacion
+(por defecto sea 1 - Deposito, y no cambia hasta que el usuario lo
+cambie.
+-Acerca del prototipo, lo necesitamos urgente y debe permitir la
+importacion desde el sistema de archivos, con un boton de file search
+o escribiendo el lugar.
+-idem para la exportacion permitir indicar el nombre y donde grabar.
+
+************************12/10/2011******************************************************************************************
+1.Si no hay conectividad o el dispositivo no tiene activado el wifi, la aplicacion termina con error.
+2.esta acumulando todo en el deposito 1
+3.no indica el tipo de lectura que hizo (si fue paquete o lectura individual)
+4.deberia agregar la extension del archivo automaticamente en caso de que no se escriba
+5.Al importar deberia salir un explorador para ubicar mas facil el arivo
+6.No se esta guardando la fecha hora de la ultima lectura del scanner y deberia salir por deposito
+-7.esta permitiendo grabar registros vacios
+
+8.Insistimos en que el feedback al usuario es pobre.
+9.Necesitamos que el sistema informe las condiciones de error.
+10.Que muestre el progreso de una operacion.
+11.Pongo una direccion web no valida, y el sistema no me dice nada.
+12.Escribo un path de un archivo no existente y se abre la ventanita de progreso y se queda ahi sin hacer nada
+13.La exportacion aunque sea rápida, deberia decir al menos que se grabo el archivo. y el progreso de la operacion si se demora. eso deberia ser algo estandar.
+-14.En la lectura se soluciono el problema de la cuenta de unidades por paquetes. Pero no muestra la descripcion del producto, solo la cantidad de unidades por pack.
+-15.en la cuenta de PLU si el producto no existe avisa, pero muestra null en cantidad.
+-16.Otra cosa que no quedo bien es que la decripcion de los productos con codigo de pack solo muestra la cantidad de unidades por bulto y no muestra la descripcion.
+-17.hay que mejorar el feedback en las descargas y proceso de datos (importacion y exportacion) se me ocurre algo como un progress bar.
+********************************************************************************************************************************************************
+-1er prueba. escaneo sin wifi - importacion desde archivo
+No hago descarga de web.
+quiero leer un archivo csv
+elijo uno que trengo en la tablet
+me muestra un cartel con el nombre del archivo y dice que tiene que
+ser con extension db. ¿?
+
+-elijo un db y muestra progreso de importacion.
+la primer lectura de un producto ponele que no existe,no dice nada y
+no muestra el codigo en pantalla. la segunda escaneada si.
+le pones grabar y "hace como que graba", pero no graba nada.
+me manda al scanner, vuelvo a leer el mismo producto y me trae
+cantidad 0, o sea que no grabo?
+lo intento varias veces y lo mismo.
+
+-2 Test exportacion
+Entonces decido exportar el archivo a csv.
+ups. quiero escribir el nombre, toco el campo de nombre y se abre el
+mismo explorador de leer archivo y no puedo escribir nada.
+entonces deduzco que hay que elegir una carpeta.
+elijo una carpeta y aprieto el boton +
+vuelve a la ventana de exportacion y hago click en exportar
+dice exportacion con exito, pero no se que grabo porque busco en la
+carpeta y no veo nada
+
+-3er test importacion desde web con problemas de conexion
+Si hay un problema de conexion, la aplicacion se va "Se ha cerrado
+inesperadamente"
+Esto se reproduce activando wifi y antes de que termine de conectar
+comenzar la importacion.
+
+-4to test importacion desde web con conexion establecida
+importó satisfactoriamente.
+Aqui una pregunta; ¿ hace algun chequeo de la estructura de las tablas
+o al menos de las tablas esperadas para saber si es valida?
+
+//******************************************26/10/2011***********************************************************************
+-Al leer un articulo serializable, mostrar una pantalla que indique que "a continuacion se leeran los nros de serie" 
+y con un boton de continuar, que comience la lectura uno a uno hasta que pulse el boton back.
+
+-cuando pulse back se mostrara la lista de lo leido como esta ahora. pero debes tener en cuenta lo siguiente.
+los seriales no deben repetirse, o sea que si se lee dos veces lo mismo hay que advertirle al usuario.
+
+-es probable que pueda leerse un codigo parcialmente o leer otra cosa, porque a veces hay muchos codigos muy juntos. 
+en ese caso hay que permitir las correcciones. un boton de eliminar un nro estaria bien.
+podria ser tener presionado unos segundos el item a a borrar y que aparezca un menu flotante que diga si lo borra o si cancela.
+o sino que al apretar el boton de eliminar se pueda seleccionar el item o los items con check box.
+
+-esta duplicando la lectura de los seriales en pantalla (en la opcion de Inventario aparecen) 
+pero la exportacion csv y sqlite estan bien, eliminan los duplicados

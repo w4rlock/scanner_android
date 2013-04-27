@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:background="#ffffff"
+	android:layout_height="fill_parent" android:weightSum="1" android:gravity="center_horizontal">
+    <ImageButton android:scaleType="centerCrop" android:layout_width="64dp" android:cropToPadding="true" android:id="@+id/ibRead" android:layout_gravity="center_horizontal" android:layout_height="64dp" android:src="@drawable/barcode"/>
+    <TextView android:layout_width="wrap_content" android:id="@+id/tvRead" android:layout_height="wrap_content" android:text="@string/sRead"/>
+    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent"
+	android:layout_height="wrap_content" android:weightSum="1" android:gravity="center_horizontal">
+		<LinearLayout android:orientation="vertical" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:weightSum="1" android:gravity="center_horizontal">
+			<ImageButton android:scaleType="centerCrop" android:layout_width="64dp" android:cropToPadding="true" android:id="@+id/ibImport" android:layout_gravity="center_horizontal" android:layout_height="64dp" android:src="@drawable/imp"/>
+	    	<TextView android:layout_width="wrap_content" android:id="@+id/bImport" android:layout_height="wrap_content" android:text="@string/sImport"/>
+    	</LinearLayout>
+		<ImageView android:layout_width="wrap_content" android:id="@+id/imageView1" android:src="@drawable/logo" android:layout_height="wrap_content"></ImageView>
+    	<LinearLayout android:orientation="vertical" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:weightSum="1" android:gravity="center_horizontal">
+    	<ImageButton android:scaleType="centerCrop" android:layout_width="64dp" android:cropToPadding="true" android:id="@+id/ibExport" android:layout_gravity="center_horizontal" android:layout_height="64dp" android:src="@drawable/export3"/>
+    	<TextView android:layout_width="wrap_content" android:id="@+id/textView3" android:layout_height="wrap_content" android:text="@string/sExport"/>
+    	</LinearLayout>
+	</LinearLayout>
+    <ImageButton android:scaleType="centerCrop" android:layout_width="64dp" android:cropToPadding="true" android:id="@+id/ibQuery" android:layout_gravity="center_horizontal" android:layout_height="64dp" android:src="@drawable/inventario"/>
+    <TextView android:layout_width="wrap_content" android:id="@+id/textView3" android:layout_height="wrap_content" android:text="@string/sQuery"/>		
+</LinearLayout>
